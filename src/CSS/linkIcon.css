@@ -1,0 +1,32 @@
+.linkIcon {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 6px black;
+  border: 3px rgb(7, 7, 7) solid;
+  transition: all 0.5s;
+  padding: 3px;
+  width: 6vh;
+}
+
+.linkIcon:hover {
+  transform: scale(1.2);
+}
+
+img {
+  width: 5vh;
+  height: 5vh;
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+}
+
+.container {
+  color: black;
+  font-size: 1.5vh;
+  text-align: center;
+}
+
+.container:first-letter {
+  text-transform: uppercase;
+  color: firebrick;
+}

@@ -1,15 +1,12 @@
 import React from "react";
-import "../CSS/LinkIcon.css";
+import "../CSS/linkIcon.css";
 
 function LinkIcon(props) {
   return (
-    <img
-      className={props.className}
-      alt={props.alt}
-      src={props.src}
-      width={props.width}
-      height={props.height}
-    />
+    <a href={props.link.url} className="linkIcon">
+      <img alt={props.link.alt} src={props.link.image} />
+      <div className="container">{props.link.name}</div>
+    </a>
   );
 }
 
