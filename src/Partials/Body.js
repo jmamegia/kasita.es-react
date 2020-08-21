@@ -3,15 +3,11 @@ import Section from "../Componenets/Section";
 import "../CSS/body.css";
 
 function Body() {
-  const url = "http://localhost:3001/sections";
-  // eslint-disable-next-line
   const [sections, setSections] = useState([]);
-
   const getSections = async () => {
-    const res = await fetch(url);
+    const res = await fetch(process.env.REACT_APP_API_URL);
     const data = await res.json();
     setSections(data);
-    console.log(data[0]);
   };
 
   useEffect(() => {

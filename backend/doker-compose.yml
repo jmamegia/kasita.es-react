@@ -43,4 +43,4 @@ services:
       - 3001:3001
     command: "npm start"
     environment:
-      NPM_CONFIG_LOGLEVEL: info
+      - PORT=3001

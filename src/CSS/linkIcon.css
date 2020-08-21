@@ -5,7 +5,7 @@
   border: 3px rgb(7, 7, 7) solid;
   transition: all 0.5s;
   padding: 3px;
-  width: 6vh;
+  width: 7vh;
 }
 
 .linkIcon:hover {
@@ -13,8 +13,8 @@
 }
 
 img {
-  width: 5vh;
-  height: 5vh;
+  width: 90%;
+  height: 6vh;
   border-radius: 5px;
   display: block;
   margin: auto;
@@ -28,5 +28,9 @@ img {
 
 .container:first-letter {
   text-transform: uppercase;
+  font-weight: bold;
   color: firebrick;
+}
+a {
+  text-decoration: none;
 }

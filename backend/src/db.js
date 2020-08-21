@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Section = require("./Models/Section");
-const Link = require("./Models/Link");
+const chargeLinks = require("./Controllers/ChargeLinksController");
 
 const connectDb = async function () {
   try {
@@ -10,7 +10,6 @@ const connectDb = async function () {
       useFindAndModify: false,
     });
     await createDefaultSection();
-    await createTestIconLink();
     return true;
   } catch (error) {
     console.error(error);
@@ -25,33 +24,8 @@ const createDefaultSection = async function () {
     { new: true, upsert: true },
     (error, result) => {
       if (error) return false;
-      else return true;
-    }
-  );
-};
-
-const createTestIconLink = async () => {
-  let testIconLink = {
-    name: "test",
-    url: "www.goolge.es",
-  };
-  await Link.findOneAndUpdate(
-    { name: testIconLink.name },
-    testIconLink,
-    { new: true, upsert: true },
-    async (error, result) => {
-      if (error) return false;
       else {
-        await Section.findOneAndUpdate(
-          { name: "General" },
-          { links: [result] },
-          { new: true, upsert: true },
-          (error, result) => {
-            if (error) return false;
-            else return true;
-          }
-        );
-
+        chargeLinks();
         return true;
       }
     }
