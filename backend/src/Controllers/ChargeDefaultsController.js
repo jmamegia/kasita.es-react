@@ -1,5 +1,6 @@
 const Link = require("../Models/Link");
 const Section = require("../Models/Section");
+const User = require("../Models/User");
 
 const links = [
   {
@@ -26,11 +27,11 @@ const links = [
   },
 ];
 
-const AddLinks = async () => {
+const chargeLinks = async () => {
   console.log("here");
   links.map(async (link) => {
     await Link.findOneAndUpdate(
-      { name: link.name },
+      { url: link.url },
       link,
       { new: true, upsert: true },
       async (error, result) => {
@@ -53,4 +54,13 @@ const AddLinks = async () => {
   });
 };
 
-module.exports = AddLinks;
+const addAdminUser = async () => {
+  let user = new User({
+    name: process.env.USER,
+    password: process.env.PASSWORD,
+    token: "",
+  });
+  await user.save();
+};
+
+module.exports = { chargeLinks, addAdminUser };

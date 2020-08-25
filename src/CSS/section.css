@@ -8,4 +8,12 @@
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 5px;
+  font-size: 2vh;
+  margin: 0px 5px;
+}
+
+.sectionName {
+  margin: 0px 5px;
+  padding: 0px 5px;
+  margin-bottom: 0px;
 }

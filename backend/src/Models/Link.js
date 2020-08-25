@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 
 const Link = new mongoose.Schema(
   {
-    name: String,
+    name: {
+      type: String,
+      unique: true,
+    },
     image: {
       type: String,
       default: "https://img.icons8.com/officel/40/000000/cloud-link--v1.png",

@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../Componenets/Logo";
+import Logo from "../Components/Logo";
 import "../CSS/head.css";
 
 function Head() {

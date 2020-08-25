@@ -1,4 +1,4 @@
-version: "2.0"
+https://api.kasita.es/sectionsversion: "2.0"
 
 networks:
   v_network:
@@ -44,6 +44,3 @@ services:
     command: "npm start"
     environment:
       - PORT=3001
-      - USER=jma
-      - PASSWORD=311000oo
-      - SECRET="losgatitossonmonos"

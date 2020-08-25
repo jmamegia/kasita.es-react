@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const Section = require("./Models/Section");
-const chargeLinks = require("./Controllers/ChargeLinksController");
+const {
+  chargeLinks,
+  addAdminUser,
+} = require("./Controllers/ChargeDefaultsController");
 
 const connectDb = async function () {
   try {
@@ -10,6 +13,7 @@ const connectDb = async function () {
       useFindAndModify: false,
     });
     await createDefaultSection();
+    //await addAdminUser();
     return true;
   } catch (error) {
     console.error(error);

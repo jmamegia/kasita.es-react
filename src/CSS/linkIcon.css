@@ -6,12 +6,13 @@
   transition: all 0.5s;
   padding: 3px;
   width: 7vh;
+  text-decoration: none;
+  position: relative;
 }
-
-.linkIcon:hover {
+.scale {
   transform: scale(1.2);
+  transition: all 0.4s;
 }
-
 img {
   width: 90%;
   height: 6vh;
@@ -31,6 +32,23 @@ img {
   font-weight: bold;
   color: firebrick;
 }
-a {
-  text-decoration: none;
+
+.iconPanel {
+  position: absolute;
+  top: 0vh;
+  right: 0em;
+  width: 3vh;
+  margin-top: 2px;
+}
+.icon:hover {
+  transform: scale(1.2);
+  transition: all 0.4s;
+}
+
+.icon {
+  margin-bottom: 1.2vh;
+  transform: scale(1);
+  transition: all 0.4s;
+  width: 3vh;
+  height: 3vh;
 }

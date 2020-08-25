@@ -1,0 +1,39 @@
+.formContainer {
+  position: absolute;
+  background-color: #373c46;
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px black;
+  display: flex;
+  flex-flow: column;
+  font-size: 1.5vh;
+  padding: 5px;
+  visibility: visible;
+  transition: all 1s;
+  z-index: 100;
+}
+
+button {
+  background-color: firebrick;
+  color: whitesmoke;
+  margin-top: 5px;
+}
+
+button:hover {
+  z-index: 100;
+  background-color: rgb(219, 20, 20);
+}
+
+label {
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
+
+.hide {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.show {
+  transform: scaleY(1);
+  transform-origin: top;
+}

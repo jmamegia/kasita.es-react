@@ -3,3 +3,7 @@
   flex-flow: column;
   align-items: center;
 }
+
+.section {
+  margin-top: 1vh;
+}

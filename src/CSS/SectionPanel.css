@@ -1,0 +1,23 @@
+.SectionPanel {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 6px black;
+  border: 3px rgb(7, 7, 7) solid;
+  transition: all 0.5s;
+  width: 3vh;
+  margin-left: auto;
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.SectionPanel img {
+  transition: all 0.4s;
+  padding: 0;
+  height: 3vh;
+}
+.SectionPanel img:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
