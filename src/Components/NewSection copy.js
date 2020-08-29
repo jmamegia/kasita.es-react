@@ -19,10 +19,13 @@ function Construction() {
   const onChangeHandler = (e) => {
     setName(e.target.value);
   };
-  return (
+  return !sectionForm ? (
     <div className="newSection" onClick={toggleSectionForm}>
       <img className="addIcon" src={addIcon} alt="add" />
-      <form className={`form ${sectionForm ? "fshow" : "fhide"}`}>
+    </div>
+  ) : (
+    <div className="newSection form">
+      <form className={`${setSectionForm ? "show" : "hide"}`}>
         <div>
           <label htmlFor="name">
             <b>Name </b>

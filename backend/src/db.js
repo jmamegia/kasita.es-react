@@ -13,7 +13,7 @@ const connectDb = async function () {
       useFindAndModify: false,
     });
     await createDefaultSection();
-    //await addAdminUser();
+    await addAdminUser();
     return true;
   } catch (error) {
     console.error(error);

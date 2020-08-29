@@ -28,7 +28,6 @@ const links = [
 ];
 
 const chargeLinks = async () => {
-  console.log("here");
   links.map(async (link) => {
     await Link.findOneAndUpdate(
       { url: link.url },
@@ -55,12 +54,14 @@ const chargeLinks = async () => {
 };
 
 const addAdminUser = async () => {
-  let user = new User({
-    name: process.env.USER,
-    password: process.env.PASSWORD,
-    token: "",
-  });
-  await user.save();
+  try {
+    let user = new User({
+      name: process.env.USER,
+      password: process.env.PASSWORD,
+      token: "",
+    });
+    await user.save();
+  } catch {}
 };
 
 module.exports = { chargeLinks, addAdminUser };

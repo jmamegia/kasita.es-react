@@ -15,7 +15,6 @@ services:
 
   mongo-express:
     image: mongo-express
-    restart: always
     networks:
       - v_network
     depends_on:

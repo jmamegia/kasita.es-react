@@ -8,7 +8,7 @@ import "./CSS/App.css";
 export const Context = React.createContext();
 
 function App() {
-  const [locked, setLocked] = useState(true);
+  const [locked, setLocked] = useState(false);
   const [token, setToken] = useState("");
   const [sections, setSections] = useState([]);
   const toggleLock = () => setLocked(!locked);

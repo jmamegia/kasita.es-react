@@ -4,13 +4,7 @@
 }
 
 .newSection {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: row;
-  opacity: 30%;
   cursor: pointer;
-  transition: all 1s;
   width: 50vw;
   background-color: #373c46;
   border-radius: 5px;
@@ -18,23 +12,35 @@
   font-size: 2vh;
   padding: 5px;
   font-size: 1.5vh;
+  transition: all 1s;
+
   position: relative;
 }
 
 .newSection:hover {
-  opacity: 100%;
   z-index: 0;
+  opacity: 1;
 }
 
 .form {
-  flex-flow: column;
-  opacity: 100%;
-  justify-content: flex-start;
-  align-items: flex-start;
+  position: static;
+  opacity: 1;
+  transition: height 1s;
+  transition: all 1s;
 }
 
 .buttons {
   display: flex;
   flex-flow: row;
   justify-content: flex-end;
+}
+
+.fhide {
+  height: 0;
+  transform: scaleY(0);
+}
+
+.fshow {
+  height: 6.5vh;
+  transform: scaleY(1);
 }

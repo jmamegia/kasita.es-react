@@ -48,7 +48,6 @@ const updateLink = async (data) => {
     async (error, result) => {
       if (error) return false;
       if (data.section) {
-        console.log(result);
         await Section.findOneAndUpdate(
           { _id: data.section },
           { $addToSet: { links: result } },
