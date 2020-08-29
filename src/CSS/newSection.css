@@ -10,11 +10,33 @@
   border-radius: 5px;
   box-shadow: 2px 2px 6px black;
   font-size: 2vh;
-  padding: 5px;
+  padding: 05px;
   font-size: 1.5vh;
   transition: all 1s;
-
   position: relative;
+}
+
+.showingForm {
+  opacity: 1;
+}
+.hiddingForm {
+  opacity: 0.3;
+}
+
+.hiddingForm img {
+  transition: width 1s;
+  transition-delay: 1s;
+  width: 1;
+}
+
+.showingForm img {
+  transition: height 0.1s, width 1s;
+  transition-delay: height 2s;
+  height: 0;
+  width: 0;
+}
+label {
+  margin-top: 0;
 }
 
 .newSection:hover {
@@ -26,13 +48,23 @@
   position: static;
   opacity: 1;
   transition: height 1s;
-  transition: all 1s;
+  transition: all 0.9s;
+}
+.form input {
+  margin-top: 1vh;
+  margin-left: 1.5vh;
+  width: 25vh;
+  height: 1.5vh;
 }
 
+.buttons button {
+  font-size: 1.5vh;
+}
 .buttons {
   display: flex;
   flex-flow: row;
   justify-content: flex-end;
+  font-size: 0.5vw !important;
 }
 
 .fhide {
@@ -41,6 +73,6 @@
 }
 
 .fshow {
-  height: 6.5vh;
+  height: 8vh;
   transform: scaleY(1);
 }
