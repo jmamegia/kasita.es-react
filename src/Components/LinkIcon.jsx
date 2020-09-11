@@ -1,19 +1,20 @@
 import React, { useContext, useState } from "react";
-import services from "../Services/services";
-import IconForm from "./IconForm";
-import trash from "../Images/trash.svg";
-import edit from "../Images/edit.svg";
-import { Context } from "../App";
-import "../CSS/linkIcon.css";
+import useLink from "../Hooks/useLink";
+import IconForm from "Components/IconForm";
+import trash from "Images/trash.svg";
+import edit from "Images/edit.svg";
+import AppContext from "../Context/AppContext";
+import "CSS/linkIcon.css";
 
 function LinkIcon(props) {
+  const { delLink } = useLink();
   const [hovered, setHovered] = useState(false);
   const toggleHovered = () => setHovered(!hovered);
-  const context = useContext(Context);
+  const { locked } = useContext(AppContext);
   const [edition, setEdition] = useState(false);
-  const deleteLink = async (e) => {
+  const deleteLink = (e) => {
     e.preventDefault();
-    await services.deleteLink(props.link, context.token);
+    delLink(props.link);
   };
   const toggleEdition = (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ function LinkIcon(props) {
       href={props.link.url}
       onMouseEnter={toggleHovered}
       onMouseLeave={toggleHovered}
-      className={`linkIcon ${hovered && context.locked ? "scale" : ""}`}
+      className={`linkIcon ${hovered && locked ? "scale" : ""}`}
     >
       <img alt={props.link.name} src={props.link.image} />
       <IconForm
@@ -33,7 +34,7 @@ function LinkIcon(props) {
         toggleEdition={toggleEdition}
         link={props.link}
       />
-      {!context.locked ? (
+      {!locked ? (
         <div className="iconPanel">
           <img className="icon" src={edit} onClick={toggleEdition} alt="edit" />
           <img className="icon" src={trash} onClick={deleteLink} alt="trash" />

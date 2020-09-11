@@ -14,7 +14,7 @@ const deleteSection = async (section) => {
   if (section.name !== "General") {
     await section.links.map((link) => deleteLink(link)); //remove all links in secction first
     let res = await Section.findOneAndDelete({ _id: section._id }); //next remove section
-    return res;
+    return true;
   } else return false;
 };
 

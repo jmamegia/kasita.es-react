@@ -1,20 +1,17 @@
-import React, { useState, useContext } from "react";
-import { Context } from "../App";
-import services from "../Services/services";
-import "../CSS/UnlockForm.css";
+import React, { useState } from "react";
+import useLink from "../Hooks/useLink";
+import "CSS/UnlockForm.css";
 
 function UnlockForm(props) {
   const [newLink, setNewLink] = useState(props.link);
-  const context = useContext(Context);
+  const { updtLink } = useLink();
   const sendForm = (e) => {
     props.toggleEdition(e);
-    services.updateLink(
-      {
-        link: newLink,
-        section: props.section ? props.section._id : false,
-      },
-      context.token
-    );
+    let link = {
+      newLink,
+      section: props.section ? props.section._id : false,
+    };
+    updtLink(link);
   };
 
   const onChangeHandler = (e) => {

@@ -1,28 +1,16 @@
-import React, { useContext, useState } from "react";
-
-import "../CSS/UnlockForm.css";
-import { Context } from "../App";
+import React, { useState, useContext } from "react";
+import "CSS/UnlockForm.css";
+import useLogin from "../Hooks/useLogin";
+import AppContext from "../Context/AppContext";
 
 function UnlockForm(props) {
+  const { getLogin } = useLogin();
+  const { locked } = useContext(AppContext);
   const [credentials, setCredentials] = useState({ name: "", password: "" });
-  const context = useContext(Context);
-  const url = process.env.REACT_APP_API_URL;
   const sendForm = async (e) => {
     e.preventDefault();
-    const options = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-      method: "PUT",
-    };
-    let res = await fetch(`${url}/login`, options);
-    let data = await res.json();
-    if (data) {
-      context.setToken(data);
-      context.toggleLock();
-      props.toggleForm();
-    }
+    props.toggleForm();
+    getLogin(credentials);
   };
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -32,7 +20,10 @@ function UnlockForm(props) {
     setCredentials(newvalues);
   };
   return (
-    <div className={`formContainer ${props.showing ? "show" : "hide"}`}>
+    <form
+      onSubmit={sendForm}
+      className={`formContainer ${props.showing ? "show" : "hide"}`}
+    >
       <label htmlFor="uname">
         <b>Username</b>
       </label>
@@ -56,10 +47,8 @@ function UnlockForm(props) {
         onChange={onChangeHandler}
         required
       ></input>
-      <button type="submit" onClick={sendForm}>
-        {context.locked ? "Unlock" : "Lock"}
-      </button>
-    </div>
+      <button type="submit">{locked ? "Unlock" : "Lock"}</button>
+    </form>
   );
 }
 

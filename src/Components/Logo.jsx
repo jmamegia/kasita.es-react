@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
-import lockIcon from "../Images/logoLock.svg";
-import unlockIcon from "../Images/logoUnlock.svg";
-import UnlockForm from "../Components/UnlockForm";
-import { Context } from "../App";
+import lockIcon from "Images/logoLock.svg";
+import unlockIcon from "Images/logoUnlock.svg";
+import UnlockForm from "Components/UnlockForm";
+import AppContext from "Context/AppContext";
 
 function Logo(props) {
-  const context = useContext(Context);
+  const { locked } = useContext(AppContext);
   const [showing, setShowing] = useState(false);
-  const icon = context.locked ? lockIcon : unlockIcon;
+  const icon = locked ? lockIcon : unlockIcon;
   const toggleForm = () => setShowing(!showing);
   return (
     <div className="iconRound">
