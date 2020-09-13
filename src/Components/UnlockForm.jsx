@@ -4,14 +4,22 @@ import useLogin from "../Hooks/useLogin";
 import AppContext from "../Context/AppContext";
 
 function UnlockForm(props) {
+<<<<<<< HEAD:src/Components/UnlockForm.jsx
   const { getLogin, setLocked } = useLogin();
+=======
+  const { getLogin } = useLogin();
+>>>>>>> 777f799d44e54d567e6213fdca0bf293fa899646:src/Components/UnlockForm.js
   const { locked } = useContext(AppContext);
   const [credentials, setCredentials] = useState({ name: "", password: "" });
   const sendForm = async (e) => {
     e.preventDefault();
     props.toggleForm();
+<<<<<<< HEAD:src/Components/UnlockForm.jsx
     if (locked) getLogin(credentials);
     else setLocked(true);
+=======
+    getLogin(credentials);
+>>>>>>> 777f799d44e54d567e6213fdca0bf293fa899646:src/Components/UnlockForm.js
   };
   const onChangeHandler = (e) => {
     e.preventDefault();
