@@ -37,7 +37,7 @@ services:
     working_dir: /home/node/app
     restart: always
     volumes:
-      - /media/jma/Datos/Nextcloud/Proyectos/kasita/backend:/home/node/app
+      - /media/jma/Datos/Proyectos/kasita/backend:/home/node/app
     ports:
       - 3001:3001
     command: "npm start"

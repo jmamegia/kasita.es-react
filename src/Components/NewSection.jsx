@@ -1,31 +1,34 @@
-import React, { useState, useContext } from "react";
-import services from "../Services/services";
-import addIcon from "../Images/add.png";
-import { Context } from "../App";
-import "../CSS/newSection.css";
+import React, { useState } from "react";
+import useSection from "Hooks/useSection";
+import addIcon from "Images/add.png";
+import "CSS/newSection.css";
 
 function Construction() {
-  const context = useContext(Context);
+  const { addSection } = useSection();
+  const [sectionForm, setSectionForm] = useState(false);
+  const [name, setName] = useState("");
   const toggleSectionForm = (e) => {
+    e.stopPropagation();
     e.preventDefault();
-    setSectionForm(!sectionForm);
+    setSectionForm(false);
   };
   const sendForm = (e) => {
     e.preventDefault();
-    services.updateSection({ name }, context.token);
+    e.stopPropagation();
+    setSectionForm(false);
+    addSection({ name });
   };
-  const [sectionForm, setSectionForm] = useState(false);
-  const [name, setName] = useState("");
   const onChangeHandler = (e) => {
     setName(e.target.value);
   };
-  return !sectionForm ? (
-    <div className="newSection" onClick={toggleSectionForm}>
-      <img className="addIcon" src={addIcon} alt="add" />
-    </div>
-  ) : (
-    <div className="newSection form">
-      <form className={`${setSectionForm ? "show" : "hide"}`}>
+  return (
+    <div
+      className={`newSection ${sectionForm ? "showingForm" : "hiddingForm"}`}
+      onClick={() => setSectionForm(true)}
+    >
+      <img className={`addIcon`} src={addIcon} alt="add" />
+
+      <form className={`form ${sectionForm ? "fshow" : "fhide"}`}>
         <div>
           <label htmlFor="name">
             <b>Name </b>

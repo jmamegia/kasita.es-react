@@ -1,20 +1,13 @@
-import React, { useState, useContext } from "react";
-import { Context } from "../App";
-import services from "../Services/services";
-import "../CSS/UnlockForm.css";
+import React, { useState } from "react";
+import useLink from "../Hooks/useLink";
+import "CSS/UnlockForm.css";
 
 function UnlockForm(props) {
   const [newLink, setNewLink] = useState(props.link);
-  const context = useContext(Context);
+  const { updtLink } = useLink();
   const sendForm = (e) => {
     props.toggleEdition(e);
-    services.updateLink(
-      {
-        link: newLink,
-        section: props.section ? props.section._id : false,
-      },
-      context.token
-    );
+    updtLink({ link: newLink, section: props.section });
   };
 
   const onChangeHandler = (e) => {
@@ -37,7 +30,7 @@ function UnlockForm(props) {
         type="text"
         placeholder="Enter name"
         name="name"
-        value={props.link ? newLink.name : ""}
+        value={newLink.name || ""}
         autoFocus
         onChange={onChangeHandler}
         required
@@ -49,17 +42,17 @@ function UnlockForm(props) {
         type="text"
         placeholder="Enter link"
         name="url"
-        value={props.link ? newLink.url : ""}
+        value={newLink.url || ""}
         onChange={onChangeHandler}
         required
       ></input>
-      <label htmlFor="link">
+      <label htmlFor="image">
         <b>Image</b>
       </label>
       <input
         type="text"
         placeholder="Enter image URL"
-        value={props.link ? newLink.image : ""}
+        value={newLink.image || ""}
         onChange={onChangeHandler}
         name="image"
       ></input>

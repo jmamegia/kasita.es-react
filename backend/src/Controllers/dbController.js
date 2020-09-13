@@ -14,7 +14,7 @@ const deleteSection = async (section) => {
   if (section.name !== "General") {
     await section.links.map((link) => deleteLink(link)); //remove all links in secction first
     let res = await Section.findOneAndDelete({ _id: section._id }); //next remove section
-    return res;
+    return true;
   } else return false;
 };
 
@@ -39,8 +39,9 @@ const deleteLink = async (link) => {
 };
 
 const updateLink = async (data) => {
-  let link = data.link;
+  const link = data.link;
   if (!link._id) link._id = new ObjectId(); //_if not _id=null, no automatic set
+  console.log(link);
   await Link.findOneAndUpdate(
     { _id: link._id },
     link,
@@ -52,7 +53,7 @@ const updateLink = async (data) => {
           { _id: data.section },
           { $addToSet: { links: result } },
           { new: true, upsert: true },
-          (error, result) => {
+          (error) => {
             if (error) return false;
             else return true;
           }

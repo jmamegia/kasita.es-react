@@ -1,22 +1,20 @@
 import React, { useContext } from "react";
 import Section from "../Components/Section";
 import NewSection from "../Components/NewSection";
-import { Context } from "../App";
+import AppContext from "../Context/AppContext";
+import useSection from "../Hooks/useSection";
+
 import "../CSS/body.css";
 
 function Body() {
-  const context = useContext(Context);
-
+  const { locked } = useContext(AppContext);
+  const { sections } = useSection();
   return (
     <div className="body">
-      {context.sections.map((section, key) => {
+      {sections.map((section, key) => {
         return <Section className="section" key={key} section={section} />;
       })}
-      {!context.locked ? (
-        <NewSection section={{ name: "New", links: [] }} />
-      ) : (
-        ""
-      )}
+      {!locked ? <NewSection section={{ name: "New", links: [] }} /> : ""}
     </div>
   );
 }
