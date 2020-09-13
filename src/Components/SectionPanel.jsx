@@ -24,10 +24,7 @@ const SectionPanel = (props) => {
         <IconForm
           showing={edition}
           section={props.section}
-<<<<<<< HEAD:src/Components/SectionPanel.jsx
           link={{ name: "" }}
-=======
->>>>>>> 777f799d44e54d567e6213fdca0bf293fa899646:src/Components/SectionPanel.js
           toggleEdition={toggleEdition}
         />
       </div>

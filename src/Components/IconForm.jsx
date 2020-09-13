@@ -7,15 +7,7 @@ function UnlockForm(props) {
   const { updtLink } = useLink();
   const sendForm = (e) => {
     props.toggleEdition(e);
-<<<<<<< HEAD:src/Components/IconForm.jsx
     updtLink({ link: newLink, section: props.section });
-=======
-    let link = {
-      newLink,
-      section: props.section ? props.section._id : false,
-    };
-    updtLink(link);
->>>>>>> 777f799d44e54d567e6213fdca0bf293fa899646:src/Components/IconForm.js
   };
 
   const onChangeHandler = (e) => {
