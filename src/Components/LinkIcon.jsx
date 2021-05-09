@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import useLink from "../Hooks/useLink";
+import { useLink } from "../Hooks/useLink";
 import IconForm from "Components/IconForm";
 import trash from "Images/trash.svg";
 import edit from "Images/edit.svg";

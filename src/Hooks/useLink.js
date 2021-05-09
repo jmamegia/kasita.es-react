@@ -2,7 +2,7 @@ import { useContext } from "react";
 import useSection from "./useSection";
 import AppContext from "../Context/AppContext";
 import { deleteLink, updateLink } from "../Services/services";
-export default () => {
+export const useLink = () => {
   const { token } = useContext(AppContext);
   const { updateSections } = useSection();
 

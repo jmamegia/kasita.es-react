@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import "CSS/UnlockForm.css";
-import useLogin from "../Hooks/useLogin";
+import { useLogin } from "../Hooks/useLogin";
 import AppContext from "../Context/AppContext";
 
 function UnlockForm(props) {

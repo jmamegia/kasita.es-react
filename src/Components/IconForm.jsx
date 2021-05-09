@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useLink from "../Hooks/useLink";
+import { useLink } from "../Hooks/useLink";
 import "CSS/UnlockForm.css";
 
 function UnlockForm(props) {
