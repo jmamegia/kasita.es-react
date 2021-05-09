@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:kasita.es-react}/backend/db/database.db",
+            "name": "dd"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

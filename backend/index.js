@@ -1,10 +1,9 @@
-const { connectDb } = require("./src/db");
 const startApp = require("./src/app");
+const { initDb } = require("./src/Controllers/ChargeDefaultsController");
 
 const dbConnected = async () => {
-  const connect = await connectDb();
-  console.log(`Db connection: ${connect}`);
-  return connect;
+  await initDb();
+  return true;
 };
 
 (async function start() {

@@ -1,7 +1,7 @@
-const Link = require("../Models/Link");
-const Section = require("../Models/Section");
-const User = require("../Models/User");
-
+const Link = require("../db/Models/Link");
+const Section = require("../db/Models/Section");
+const User = require("../db/Models/User");
+const sequelize = require("../db/index");
 const links = [
   {
     name: "nextloud",
@@ -27,41 +27,39 @@ const links = [
   },
 ];
 
-const chargeLinks = async () => {
+const initDb = async () => {
+  await sequelize.sync();
+  let defaultSection = await Section.findOne({ where: { name: "General" } });
+  if (!defaultSection) {
+    await createDefaultSection();
+    defaultSection = await Section.findOne({ where: { name: "General" } });
+  }
+  await chargeLinks(defaultSection.id);
+  await addAdminUser();
+};
+
+const createDefaultSection = async () => {
+  await Section.create({ name: "General" });
+};
+
+const chargeLinks = async (sectionId) => {
   links.map(async (link) => {
-    await Link.findOneAndUpdate(
-      { url: link.url },
-      link,
-      { new: true, upsert: true },
-      async (error, result) => {
-        if (error) return false;
-        else {
-          //ad new link to general section
-          await Section.findOneAndUpdate(
-            { name: "General" },
-            { $addToSet: { links: result } },
-            { new: true, upsert: true },
-            (error, result) => {
-              if (error) return false;
-              else return true;
-            }
-          );
-          return true;
-        }
-      }
-    );
+    try {
+      await Link.create({
+        ...link,
+        sectionId,
+      });
+    } catch (e) {}
   });
 };
 
 const addAdminUser = async () => {
   try {
-    let user = new User({
-      name: process.env.USER,
-      password: process.env.PASSWORD,
-      token: "",
+    let user = await User.create({
+      name: process.env.USER || "jma",
+      password: process.env.PASSWORD || "losgatitossonmonos",
     });
-    await user.save();
   } catch {}
 };
 
-module.exports = { chargeLinks, addAdminUser };
+module.exports = { initDb };

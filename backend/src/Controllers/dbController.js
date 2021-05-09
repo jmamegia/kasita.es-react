@@ -1,67 +1,60 @@
-const Section = require("../Models/Section");
-const ObjectId = require("mongodb").ObjectID;
-const Link = require("../Models/Link");
+const Section = require("../db/Models/Section");
+const Link = require("../db/Models/Link");
 
 const findSections = async (...args) => {
   let findby = {};
   findby[args[0]] = args[1];
-  let res = await Section.find(findby);
+  let res = await Section.findAll({
+    include: [
+      {
+        model: Link,
+        as: Link.tableName,
+      },
+    ],
+  });
+  //console.log(res);
   if (res) return res;
   else return false;
 };
 
 const deleteSection = async (section) => {
   if (section.name !== "General") {
-    await section.links.map((link) => deleteLink(link)); //remove all links in secction first
-    let res = await Section.findOneAndDelete({ _id: section._id }); //next remove section
+    //await section.links.map((link) => deleteLink(link)); //remove all links in secction first
+    await Section.destroy({ where: { id: section.id } }); //next remove section
     return true;
   } else return false;
 };
 
 const updateSection = async (section) => {
-  if (!section._id) section._id = new ObjectId();
-  await Section.findOneAndUpdate(
-    { name: section.name },
-    section,
-    { new: true, upsert: true },
-    (error, result) => {
-      if (error) return false;
-      else {
-        return result;
-      }
-    }
-  );
+  await Section.create({ where: { name: section.name } });
 };
 
 const deleteLink = async (link) => {
-  let res = await Link.findOneAndDelete({ _id: link._id });
+  let res = await Link.destroy({ where: { id: link.id } });
   return res;
 };
 
 const updateLink = async (data) => {
-  const link = data.link;
-  if (!link._id) link._id = new ObjectId(); //_if not _id=null, no automatic set
-  console.log(link);
-  await Link.findOneAndUpdate(
-    { _id: link._id },
-    link,
-    { new: true, upsert: true, setDefaultsOnInsert: true },
-    async (error, result) => {
-      if (error) return false;
-      if (data.section) {
-        await Section.findOneAndUpdate(
-          { _id: data.section },
-          { $addToSet: { links: result } },
-          { new: true, upsert: true },
-          (error) => {
-            if (error) return false;
-            else return true;
-          }
-        );
-        return result;
-      }
-    }
-  );
+  const newLink = data.link;
+  console.log(newLink);
+  let link = null;
+  if (newLink?.id) link = await Link.findOne({ where: { id: newLink.id } });
+  let res = null;
+  if (!link)
+    res = await Link.create({
+      name: newLink.name,
+      image: newLink.image,
+      url: newLink.url,
+      sectionId: data.section.id,
+    });
+  else {
+    link.name = newLink.name;
+    link.image = newLink.image;
+    link.url = newLink.url;
+    await link.save();
+    res = link;
+  }
+  return res;
 };
 module.exports = {
   findSections,

@@ -12,6 +12,7 @@ export default () => {
   };
   const updtLink = async (link) => {
     let res = await updateLink(link, token);
+    console.log(res);
     if (res) updateSections();
   };
   return { delLink, updtLink };
