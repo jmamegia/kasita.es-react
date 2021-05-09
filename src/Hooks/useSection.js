@@ -14,6 +14,7 @@ export default () => {
   const updateSections = () => {
     getSections().then((data) => {
       setSections(data);
+      console.log(sections[0]);
     });
   };
   useEffect(updateSections, []);

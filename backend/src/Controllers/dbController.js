@@ -36,7 +36,6 @@ const deleteLink = async (link) => {
 
 const updateLink = async (data) => {
   const newLink = data.link;
-  console.log(newLink);
   let link = null;
   if (newLink?.id) link = await Link.findOne({ where: { id: newLink.id } });
   let res = null;
@@ -52,7 +51,6 @@ const updateLink = async (data) => {
     link.image = newLink.image;
     link.url = newLink.url;
     await link.save();
-    res = link;
   }
   return res;
 };

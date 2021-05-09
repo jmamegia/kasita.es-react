@@ -10,7 +10,7 @@ function Section(props) {
     return (
       <div className={`section ${props.new ? "new" : ""}`}>
         {props.section.links.map((link, key) => (
-          <LinkIcon key={key} link={link} />
+          <LinkIcon key={link.id} link={link} />
         ))}
         {!locked ? <SectionPanel section={props.section} /> : ""}
       </div>
