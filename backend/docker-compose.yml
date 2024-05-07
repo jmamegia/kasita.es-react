@@ -20,4 +20,4 @@ services:
       - PORT=3001
       - USER=jma
       - PASSWORD=311000oo
-      - SECRET="losgatitossonmonos"
+      - SECRET="XXX"
